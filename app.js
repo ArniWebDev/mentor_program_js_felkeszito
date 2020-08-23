@@ -1,17 +1,21 @@
+// Mocked data to simulate last BMI and history
 const valueHistory = [
   { heightBMI: "173", nameBMI: "Geza", weightBMI: "87" },
-  { heightBMI: "173", nameBMI: "Geza", weightBMI: "89" },
+  { heightBMI: "188", nameBMI: "Bela", weightBMI: "89" },
   { heightBMI: "165", nameBMI: "Marci", weightBMI: "75" },
   { heightBMI: "173", nameBMI: "Geza", weightBMI: "92" },
 ];
 
+// empty array to simulate no data no history
 // const valueHistory = [];
 
+//Global query selectors
 const lastData = document.querySelector(".last-data");
 const historyList = document.querySelector(".history-list");
 const historyTitle = document.querySelector(".history-title");
-
 const form = document.getElementById("form");
+
+//Form event listener, handle reading from data
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const formObj = {};
@@ -23,39 +27,48 @@ form.addEventListener("submit", (event) => {
     }
   });
   form.reset();
-  console.log(formObj);
   renderDataWithNewInput(formObj);
 });
 
+//Render data when the app starts
 renderDataFromServer = (values) => {
   if (values && values[0]) {
-    console.log("letezik adat");
-    addToDOMnewRecord(lastData, values[0], "A legutobbi mert adat:");
+    addToDOMnewRecord(lastData, values[0], "Last BMI 💪");
     renderHistory(values.slice(1));
   } else {
-    addToDOMnewRecord(lastData, null, "Nincs adat :(");
+    addToDOMnewRecord(lastData, null, "No data 😥");
+    historyTitle.innerHTML = "No History 😥";
   }
 };
 
+// Render data when the user add a new record to the DB
 renderDataWithNewInput = (newEntry) => {
   valueHistory.unshift(newEntry);
   lastData.innerHTML = "";
+  historyList.innerHTML = "";
   renderDataFromServer(valueHistory);
 };
 
+// Render history part of the app
 renderHistory = (entries) => {
   if (entries.length) {
-    historyTitle.innerHTML = "History";
+    historyTitle.innerHTML = "👇 History 👇";
     entries.forEach((element) => {
-      const p = document.createElement("p");
-      addToDOMnewRecord(p, element);
-      historyList.appendChild(p);
+      addToDOMnewRecord(historyList, element);
     });
   }
-  console.log(entries);
 };
 
+// Utility function, to create paragraphs
 addToDOMnewRecord = (parentElement, newElement, title) => {
+  const p = document.createElement("p");
+
+  if (title) {
+    const recordTitle = document.createElement("span");
+    recordTitle.innerText = title;
+    p.appendChild(recordTitle);
+  }
+
   if (newElement && typeof newElement === "object") {
     const recordTitle = document.createElement("span");
     const recordData = document.createElement("span");
@@ -63,29 +76,28 @@ addToDOMnewRecord = (parentElement, newElement, title) => {
 
     recordTitle.innerText = title || "";
 
-    recordData.innerText = `${newElement.nameBMI} vegezte a merest ${newElement.heightBMI}cm magas ${newElement.weightBMI}kg`;
+    recordData.innerText = `${newElement.nameBMI}: ${newElement.heightBMI}cm | ${newElement.weightBMI}kg`;
 
     recordBMI.innerText = `BMI: ${BMIcalculator(
       newElement.weightBMI,
       newElement.heightBMI
-    )} ami a kovetkezo kategorianak felel meg: ${BMIcategory(
+    )} | ${BMIcategory(
       BMIcalculator(newElement.weightBMI, newElement.heightBMI)
     )}`;
 
-    parentElement.appendChild(recordTitle);
-    parentElement.appendChild(recordData);
-    parentElement.appendChild(recordBMI);
-  } else {
-    const recordTitle = document.createElement("span");
-    recordTitle.innerText = title;
-    parentElement.appendChild(recordTitle);
+    p.appendChild(recordData);
+    p.appendChild(recordBMI);
   }
+
+  parentElement.appendChild(p);
 };
 
+// Calculates BMI value
 BMIcalculator = (weight, height) => {
   return Math.round((weight / height / height) * 10000 * 100) / 100;
 };
 
+// Returns the BMI category based on BMI value
 BMIcategory = (BMIvalue) => {
   if (BMIvalue < 18.5) {
     return "Underweight";
@@ -104,8 +116,10 @@ BMIcategory = (BMIvalue) => {
   }
 };
 
+// App starte function
 startApp = () => {
   renderDataFromServer(valueHistory);
 };
 
+// Call the app starter function
 startApp();

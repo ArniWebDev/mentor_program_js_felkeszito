@@ -1,9 +1,19 @@
+/* font import */
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+
+/* style reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* set dont family on html */
+html {
+  font-family: "Fredoka One", cursive;
+}
+
+/* basic text related setup */
 p,
 label,
 input {
@@ -11,15 +21,30 @@ input {
   text-align: center;
 }
 
-input {
+div p {
+  display: grid;
+  padding: 0.5rem;
+}
+
+div p span {
+  padding: 0.5rem;
+}
+
+/* input formatting */
+input,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
   height: 2rem;
   border-radius: 1rem;
   outline: none;
   border: none;
+  background-color: rgb(232, 240, 254);
+  font-family: "Fredoka One", cursive;
 }
 
 .wrapper {
-  background-color: aquamarine;
+  background-color: #c84c09;
   display: grid;
   place-items: center;
   height: 100vh;
@@ -27,6 +52,7 @@ input {
 
 .last-data {
   display: grid;
+  height: 20vh;
 }
 
 .last-data span {
@@ -38,37 +64,42 @@ input {
   font-weight: bold;
 }
 
+.history-container {
+  width: 80%;
+  height: 40vh;
+  margin: 0 auto;
+}
+
 .history-title {
   font-weight: bold;
-  margin-top: 1rem;
-  padding-top: 1rem;
+  padding: 1rem;
   border-top: black 1px dashed;
+  border-bottom: black 1px dashed;
 }
 
 .history-list {
-  height: 250px;
+  height: 30vh;
   overflow: scroll;
 }
 
 .history-list p {
-  display: grid;
-  padding: 0.5rem;
+  background-color: rgb(232, 240, 254);
+  border-radius: 1.5rem;
+  margin-top: 1rem;
 }
 
-.history-list p span {
-  padding: 0.5rem;
-}
+/* form setup */
 
 #form {
   display: grid;
   text-align: center;
-  min-height: 300px;
+  height: 40vh;
 }
 
 #form label {
-  margin-top: 20px;
+  margin-top: 1rem;
 }
 
 #form input {
-  margin-top: 10px;
+  margin-top: 0.5rem;
 }
