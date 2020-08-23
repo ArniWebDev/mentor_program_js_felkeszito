@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI app</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <form id="form">
+        <label for="nameBMI">Name</label>
+        <input type="text" id="nameBMI" name="nameBMI" />
+        <label for="heightBMI">Height</label>
+        <input type="text" id="heightBMI" name="heightBMI" />
+        <label for="weightBMI">Weight</label>
+        <input type="text" id="weightBMI" name="weightBMI" />
+        <input type="submit" value="Calculate" />
+      </form>
+      <p class="last-data"></p>
+      <div>
+        <p class="history-title"></p>
+        <div class="history-list"></div>
+      </div>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>
