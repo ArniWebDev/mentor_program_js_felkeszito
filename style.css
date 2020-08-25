@@ -8,6 +8,7 @@
   --history-card-bg-color: #e08d79;
   --main-text-color: #e0efde;
   --input-text-color: #49416d;
+  --input-placeholder-text-color: #49416d65;
   --font-family: "Fredoka One", sans-serif;
 }
 
@@ -67,6 +68,14 @@ input[type="submit"] {
 
   /* fix the auto complete */
   -webkit-box-shadow: 0 0 0px 1000px var(--button-bg-color) inset;
+}
+
+input[placeholder] {
+  background-color: var(--button-bg-color);
+  color: var(--input-placeholder-text-color);
+
+  /* fix the auto complete */
+  -webkit-text-fill-color: var(--input-placeholder-text-color);
 }
 
 .wrapper {
