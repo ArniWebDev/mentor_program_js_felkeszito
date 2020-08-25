@@ -1,6 +1,16 @@
 /* font import */
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
 
+/* colors */
+:root {
+  --main-bg-color: #49416d;
+  --button-bg-color: #b3f2dd;
+  --history-card-bg-color: #e08d79;
+  --main-text-color: #e0efde;
+  --input-text-color: #49416d;
+  --font-family: "Fredoka One", sans-serif;
+}
+
 /* style reset */
 * {
   margin: 0;
@@ -10,7 +20,9 @@
 
 /* set dont family on html */
 html {
-  font-family: "Fredoka One", cursive;
+  font-family: var(--font-family);
+  color: var(--main-text-color);
+  letter-spacing: 2px;
 }
 
 /* basic text related setup */
@@ -39,12 +51,26 @@ input:-webkit-autofill:focus {
   border-radius: 1rem;
   outline: none;
   border: none;
-  background-color: rgb(232, 240, 254);
+  background-color: var(--main-text-color);
+  color: var(--input-text-color);
   font-family: "Fredoka One", cursive;
+
+  /* fix the auto complete bug */
+  -webkit-box-shadow: 0 0 0px 1000px var(--main-text-color) inset;
+  -webkit-text-fill-color: var(--input-text-color);
+}
+
+input[type="submit"] {
+  background-color: var(--button-bg-color);
+  color: var(--input-text-color);
+  width: 8rem;
+
+  /* fix the auto complete */
+  -webkit-box-shadow: 0 0 0px 1000px var(--button-bg-color) inset;
 }
 
 .wrapper {
-  background-color: #c84c09;
+  background-color: var(--main-bg-color);
   display: grid;
   place-items: center;
   height: 100vh;
@@ -59,11 +85,6 @@ input:-webkit-autofill:focus {
   padding: 0.5rem;
 }
 
-.last-data span:first-child,
-.last-data span:last-child {
-  font-weight: bold;
-}
-
 .history-container {
   width: 80%;
   height: 40vh;
@@ -71,10 +92,9 @@ input:-webkit-autofill:focus {
 }
 
 .history-title {
-  font-weight: bold;
   padding: 1rem;
-  border-top: black 1px dashed;
-  border-bottom: black 1px dashed;
+  border-top: var(--main-text-color) 1px dashed;
+  border-bottom: var(--main-text-color) 1px dashed;
 }
 
 .history-list {
@@ -83,7 +103,7 @@ input:-webkit-autofill:focus {
 }
 
 .history-list p {
-  background-color: rgb(232, 240, 254);
+  background-color: var(--history-card-bg-color);
   border-radius: 1.5rem;
   margin-top: 1rem;
 }
@@ -92,7 +112,7 @@ input:-webkit-autofill:focus {
 
 #form {
   display: grid;
-  text-align: center;
+  place-items: center;
   height: 40vh;
 }
 
