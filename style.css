@@ -70,7 +70,7 @@ input[type="submit"] {
   -webkit-box-shadow: 0 0 0px 1000px var(--button-bg-color) inset;
 }
 
-input[placeholder] {
+input:placeholder-shown {
   background-color: var(--button-bg-color);
   color: var(--input-placeholder-text-color);
 
